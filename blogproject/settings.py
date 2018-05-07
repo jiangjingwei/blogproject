@@ -25,7 +25,7 @@ SECRET_KEY = 'm&=b!x8(eqh&ek!4e_)#h@=g$6sjfd1ulx*exs4$d1!h&tef@@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.jjwxy.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.jjwxy.com', '139.196.81.14']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'gunicorn',
     'blog',
     'comments',
 
