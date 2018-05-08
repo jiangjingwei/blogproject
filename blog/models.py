@@ -2,7 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.six import python_2_unicode_compatible
-
+import markdown
+from django.utils.html import strip_tags
 
 # Create your models here.
 
@@ -51,8 +52,26 @@ class Article(models.Model):
 
     author = models.ForeignKey(User)
 
+    views = models.PositiveIntegerField(default=0)
+
     def __str__(self):
         return self.title
+
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])
+
+    def save(self, *args, **kwargs):
+        """ 文章摘要自动根据文章保存 """
+        if not self.summary:
+            md = markdown.markdown(extensions=[
+                'markdown.extensions.extra',
+                'markdown.extensions.codehilite',
+            ])
+
+            self.summary = strip_tags(md.convert(self.content))[:54]
+
+        super(Article, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('blog:detail', kwargs={'pk': self.pk})

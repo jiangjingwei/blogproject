@@ -17,7 +17,7 @@
                                                               datetime="{{ article.create_time }}">{{ article.create_time }}</time></a></span>
                     <span class="post-author"><a href="#">{{ article.author.username }}</a></span>
                     <span class="comments-link"><a href="{{ article.get_absolute_url }}#comment-area">{{ article.comments_set.count }} 评论</a></span>
-                    <span class="views-count"><a href="{{ article.get_absolute_url }}">588 阅读</a></span>
+                    <span class="views-count"><a href="{{ article.get_absolute_url }}">{{ article.views }} 阅读</a></span>
                 </div>
             </header>
 
@@ -40,6 +40,27 @@
 
 
 
+    {% if is_paginated %}
+        <div class="pagination-simple">
+            <!-- 如果当前页还有上一页，显示上一页的按钮 -->
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">上一页</a>
+            {% endif %}
+
+            <!-- 显示当前页-->
+            <span class="current">第 {{ page_obj.number }} 页 / 共 {{ paginator.num_pages }} 页</span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">下一页</a>
+
+            {% endif %}
+
+
+        </div>
+    {% endif %}
+
+
+
 
 
     <!-- 简单分页效果
@@ -49,17 +70,17 @@
                     <a href="#">下一页</a>
                 </div>
                 -->
-                <div class="pagination">
-                    <ul>
-                        <li><a href="">1</a></li>
-                        <li><a href="">...</a></li>
-                        <li><a href="">4</a></li>
-                        <li><a href="">5</a></li>
-                        <li class="current"><a href="">6</a></li>
-                        <li><a href="">7</a></li>
-                        <li><a href="">8</a></li>
-                        <li><a href="">...</a></li>
-                        <li><a href="">11</a></li>
-                    </ul>
-                </div>
+{#                <div class="pagination">#}
+{#                    <ul>#}
+{#                        <li><a href="">1</a></li>#}
+{#                        <li><a href="">...</a></li>#}
+{#                        <li><a href="">4</a></li>#}
+{#                        <li><a href="">5</a></li>#}
+{#                        <li class="current"><a href="">6</a></li>#}
+{#                        <li><a href="">7</a></li>#}
+{#                        <li><a href="">8</a></li>#}
+{#                        <li><a href="">...</a></li>#}
+{#                        <li><a href="">11</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
 {% endblock %}
