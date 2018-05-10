@@ -5,11 +5,11 @@ from django.utils.six import python_2_unicode_compatible
 import markdown
 from django.utils.html import strip_tags
 
+
 # Create your models here.
 
 
 class Category(models.Model):
-
     """ 文章分类 """
 
     name = models.CharField(max_length=100)
@@ -19,7 +19,6 @@ class Category(models.Model):
 
 
 class Tag(models.Model):
-
     """ 文章标签 """
 
     name = models.CharField(max_length=100)
@@ -30,7 +29,6 @@ class Tag(models.Model):
 
 @python_2_unicode_compatible
 class Article(models.Model):
-
     """ 文章"""
 
     title = models.CharField(max_length=70)
