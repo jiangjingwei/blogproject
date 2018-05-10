@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{% static 'blog/css/pace.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/highlights/github.css' %}">
+{#    <link rel="stylesheet" href="{% static 'blog/css/ionicons.min.css' %}">#}
 
     <!-- js -->
 {#    <script src="{% static 'blog/js/jquery-2.1.3.min.js' %}"></script>#}
@@ -164,11 +165,7 @@
                 {% endblock tags %}
 
                 <div class="rss">
-                    <a href="{% url 'rss' %}">
-                        <span class="icon-social-rss-outline"></span>
-                        RSS 订阅
-                    </a>
-
+                    <a href="{% url 'rss' %}"><span class="ion-social-rss-outline"></span> RSS 订阅</a>
                 </div>
             </aside>
         </div>
